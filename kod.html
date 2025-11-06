@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Min Hub — Creative Lab</title>
+
+  <!-- Fonts & Icons (ใช้ใน CSS/ไอคอนโปรเจกต์) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="y.css" />
+</head>
+
+<body>
+  
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" role="banner">
+    <nav class="navbar" aria-label="Huvudmeny">
+      <h1 class="logo">MIN HUB — CREATIVE LAB</h1>
+
+      <ul class="nav-links">
+        <li><a href="#ossig">Oss</a></li>
+        <li><a href="#projekt">Projekt</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+
+      <!-- Dark/Light toggle -->
+      <input type="checkbox" id="checkboxInput" aria-label="Växla tema">
+      <label for="checkboxInput" class="toggleSwitch" title="Theme toggle"></label>
+    </nav>
+
+    <p class="intro">
+      Stay tuned.
+    </p>
+  </header>
+
+    
+
+  
+  <!-- ================= MAIN ================= -->
+  <main id="content" tabindex="-1">
+   
+
+    <!-- PROJEKT -->
+    <section id="projekt" class="section" aria-labelledby="proj-title">
+        <h2 id="proj-title">💻 Mina Projekt</h2>
+      
+        <div class="project-grid">
+          <!-- 1 -->
+          <a href="https://zippy-toffee-9b8eda.netlify.app/" target="_blank" rel="noopener"
+             class="project-card with-image">
+            <img src="/images/berg.jpg" alt="Berg och sjö" class="card-top-img">
+            <div class="card-content">
+              <h3><i class="fa-solid fa-bolt"></i> Projekt 1</h3>
+              <p></p>
+              <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">UI</span></div>
+            </div>
+          </a>
+      
+          <!-- 2 -->
+          <a href="https://tranquil-choux-1fb9e8.netlify.app/" target="_blank" rel="noopener"
+             class="project-card with-image">
+            <img src="/images/spenser.jpg" alt="Berg" class="card-top-img">
+            <div class="card-content">
+              <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Projekt 2</h3>
+              <p></p>
+              <div class="tags"><span class="tag">Grid</span><span class="tag">UX</span></div>
+            </div>
+          </a>
+      
+          <!-- 3 -->
+          <a href="https://6909ea7afbda4824b9f5c18a--clever-puffpuff-dde95e.netlify.app/" target="_blank" rel="noopener"
+             class="project-card with-image">
+            <img src="/images/afk.png" alt="Rymden" class="card-top-img">
+            <div class="card-content">
+              <h3><i class="fa-solid fa-meteor"></i> Projekt 3</h3>
+              <p></p>
+              <div class="tags"><span class="tag">Scroll</span><span class="tag">JS</span></div>
+            </div>
+          </a>
+      
+          <!-- 4 -->
+          <a href="https://karoflash-create.github.io/-Problem-ESP-Laget./Untitled-1.html" target="_blank" rel="noopener"
+             class="project-card with-image">
+            <img src="/images/problem.png" alt="Byggnad" class="card-top-img">
+            <div class="card-content">
+              <h3><i class="fa-solid fa-cubes"></i> Projekt 4</h3>
+              <p></p>
+              <div class="tags"><span class="tag">A11y</span><span class="tag">Forms</span></div>
+            </div>
+          </a>
+      
+          <!-- 5 -->
+          <a href="https://graceful-cucurucho-496492.netlify.app/" target="_blank" rel="noopener"
+             class="project-card with-image">
+            <img src="/images/tiffany.png" alt="Portrait" class="card-top-img">
+            <div class="card-content">
+              <h3><i class="fa-solid fa-palette"></i> Projekt 5</h3>
+              <p></p>
+              <div class="tags"><span class="tag">Design</span><span class="tag">Tokens</span></div>
+            </div>
+          </a>
+      
+          <!-- 6 -->
+          <a href="https://yourbabuyutter-maker.github.io/KorvGubbaarna/index.html?authuser=0" target="_blank" rel="noopener"
+             class="project-card with-image">
+            <img src="/images/korvgubbarna.png" alt="Korvgubbarna sida" class="card-top-img">
+            <div class="card-content">
+              <h3><i class="fa-solid fa-gamepad"></i> Projekt 6</h3>
+              <p></p>
+              <div class="tags"><span class="tag">Esport</span><span class="tag">Embed</span></div>
+            </div>
+          </a>
+      
+          <!-- 7 (behåll modal eller byt till länk när redo) -->
+          <label for="modal-7" class="project-card">
+            <div class="card-content">
+              <h3><i class="fa-solid fa-flask"></i> Projekt 7</h3>
+              <p></p>
+              <div class="tags"><span class="tag">Iframe</span><span class="tag">Demo</span></div>
+            </div>
+          </label>
+      
+          <!-- 8 (WIP) -->
+          <label for="modal-8" class="project-card">
+            <div class="card-content">
+              <h3><i class="fa-solid fa-seedling"></i> Projekt 8</h3>
+              <p></p>
+              <div class="tags"><span class="tag">WIP</span></div>
+            </div>
+          </label>
+        </div>
+      </section>
+      
+      <!-- KONTAKT -->
+      <section id="kontakt" class="section" aria-labelledby="contact-title">
+        <h2 id="contact-title">📬 Kontakt</h2>
+        <p>Maila mig på <a href="mailto:inyexe@gmail.com">inyexe@gmail.com</a></p>
+      </section>
+
+      
+      
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+      
+      
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer" role="contentinfo">
+    <p>&copy; 2025 projekt-vecka • byggt med ♥</p>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="z.js"></script>
+</body>
+</html>

@@ -1,0 +1,461 @@
+/* =========================================
+   THEME TOKENS
+========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;600;800&display=swap');
+
+:root{
+  /* brand */
+  --bg:#0b0b10;
+  --bg-2:#0e0e15;
+  --card:#12121b;
+  --card-2:#0f0f17;
+  --text:#e9e9f2;
+  --muted:#a7a7bd;
+  --brand:#ff2b85;
+  --brand-2:#a365ff;
+  --glow:0 0 40px rgba(163,101,255,.35);
+  --border:rgba(255,255,255,.1);
+
+  /* layout */
+  --radius:16px;
+  --pad:clamp(16px, 2.5vw, 24px);
+}
+
+/* =========================================
+   RESET + BODY
+========================================= */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(255,43,133,.15) 0%, transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(163,101,255,.16) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
+  overflow-x:hidden;
+}
+
+/* =========================================
+   HERO BACKGROUND BUBBLES (soft)
+========================================= */
+.area{display:none}
+body::before{
+  content:""; position:fixed; inset:-20% -10% auto;
+  height:70vh; z-index:-1;
+  background:
+    radial-gradient(450px 220px at 20% 70%, rgba(255,43,133,.18), transparent 60%),
+    radial-gradient(420px 220px at 80% 20%, rgba(163,101,255,.18), transparent 60%);
+  filter: blur(30px);
+}
+
+/* =========================================
+   NAVBAR (sticky + glass)
+========================================= */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(12,12,16,.5);
+  backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid var(--border);
+  padding: .8rem var(--pad);
+}
+.navbar{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:16px}
+.logo{
+  font:800 1.25rem/1 "Outfit",sans-serif; letter-spacing:.6px;
+  background:linear-gradient(90deg,var(--brand),#ff8bd0 40%, var(--brand-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.nav-links{list-style:none;display:flex;gap:18px;margin-left:auto}
+.nav-links a{
+  color:var(--text); text-decoration:none; font-weight:600; opacity:.9;
+}
+.nav-links a:hover{opacity:1; text-shadow:0 0 16px rgba(255,255,255,.15)}
+.toggleSwitch{margin-left:6px}
+
+/* Intro under nav */
+.intro{
+  max-width:1100px; margin:.7rem auto 0; padding:0 var(--pad);
+  color:var(--muted); font-size:.95rem;
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+.section{
+  max-width:1100px; margin: clamp(24px,5vw,44px) auto;
+  padding: 0 var(--pad);
+}
+.section h2{
+  font:800 clamp(1.2rem, 2.8vw, 1.6rem) "Outfit",sans-serif;
+  letter-spacing:.6px; margin-bottom:14px;
+  display:flex; align-items:center; gap:10px;
+}
+.section h2::after{
+  content:""; flex:1; height:2px; border-radius:999px;
+  background:linear-gradient(90deg, rgba(255,43,133,.35), rgba(163,101,255,.0));
+}
+
+/* =========================================
+   PROJECT GRID (glass cards + neon border)
+========================================= */
+.project-grid{
+  display:grid; gap:18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+}
+
+/* Base card */
+.project-card{
+  position:relative; border-radius:var(--radius); overflow:hidden;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid var(--border);
+  box-shadow: 0 8px 30px rgba(0,0,0,.35);
+  transform:translateZ(0);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.project-card:hover{
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,.22);
+  box-shadow: var(--glow);
+}
+
+/* === FULL-CARD IMAGE MODE === */
+.project-card.with-image{
+  padding:0;                 /* no inner gap */
+  min-height: 240px;         /* feel free to tweak */
+}
+
+/* Image fills ENTIRE card */
+.project-card.with-image .card-top-img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  transform:none !important;
+  filter:saturate(1.05) contrast(1.05);
+  transition: transform .4s ease, filter .3s ease;
+}
+
+/* Zoom image slightly on hover */
+.project-card.with-image:hover .card-top-img{
+  transform: scale(1.05);
+  filter:saturate(1.08) contrast(1.08);
+}
+
+/* Overlay content sits at bottom */
+.project-card.with-image .card-content{
+  position:absolute; left:0; right:0; bottom:0;
+  padding:16px 14px 16px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 70%);
+}
+
+/* Typography & readability on image */
+.card-content h3{
+  font:700 1.05rem/1.2 "Outfit",sans-serif; margin:0 0 6px;
+  color:#fff; text-shadow:0 2px 20px rgba(0,0,0,.6);
+}
+.card-content p{
+  color:#e9e9f2; opacity:.95;
+  text-shadow:0 2px 16px rgba(0,0,0,.55);
+}
+
+/* project tags */
+.tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.tag{
+  font-size:.72rem; color:#fff; letter-spacing:.3px;
+  padding:6px 10px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.2);
+  background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.15));
+  backdrop-filter: blur(2px);
+}
+
+/* Cards outline glow */
+.project-card::before{
+  content:""; position:absolute; inset:0; border-radius:inherit;
+  padding:1px; background:linear-gradient(120deg, rgba(255,43,133,.6), rgba(163,101,255,.6));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity:0; transition: opacity .25s ease;
+}
+.project-card:hover::before{ opacity:.9 }
+
+/* Non-image cards still look good */
+.project-card:not(.with-image) .card-content{ padding:14px 14px 16px }
+
+/* =========================================
+   MODAL (polish)
+========================================= */
+.modal{ backdrop-filter: blur(8px) saturate(110%); }
+.modal-content{
+  background: linear-gradient(180deg,#141422,#0e0e17);
+  color:var(--text); border:1px solid var(--border);
+  border-radius:18px; box-shadow:0 12px 60px rgba(0,0,0,.6);
+}
+.modal-content a{ background:linear-gradient(90deg,var(--brand),var(--brand-2)); border:none }
+.modal-content a:hover{ filter:brightness(1.1) }
+
+.modal-content.advanced{ padding:0; overflow:hidden }
+.modal-img img{ width:100%; height:220px; object-fit:cover }
+.modal-body{ background:transparent; color:var(--text) }
+
+/* =========================================
+   FOOTER
+========================================= */
+.footer{
+  border-top:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.03));
+  color:var(--muted);
+  text-align:center; padding:2em;
+}
+
+/* =========================================
+   DARK/LIGHT TOGGLE
+========================================= */
+#checkboxInput{display:none}
+.toggleSwitch{ width:54px;height:30px;border-radius:999px;background:#2b2b36; position:relative; cursor:pointer; border:1px solid var(--border)}
+.toggleSwitch::after{
+  content:""; position:absolute; left:4px; top:4px; width:22px;height:22px; border-radius:50%;
+  background:linear-gradient(180deg,#fff,#dcdcdc); transition:transform .2s ease;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+}
+#checkboxInput:checked + .toggleSwitch{ background: linear-gradient(90deg, var(--brand), var(--brand-2)) }
+#checkboxInput:checked + .toggleSwitch::after{ transform: translateX(24px) }
+
+/* =========================================
+   NICE DETAILS
+========================================= */
+html{ scroll-behavior:smooth }
+::selection{ background:rgba(255,43,133,.35) }
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+@media (max-width: 720px){
+  .nav-links{display:none}
+  .intro{font-size:.9rem}
+  .card-content{padding:12px 12px 14px}
+  .project-card.with-image{ min-height: 220px; }
+}
+
+/* ตั้งค่าทั่วไป */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .intro-body {
+    background: #ffffff;           /* หน้าจอขาว */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  /* ตัวหนังสือ Welcome */
+  .welcome-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: #111;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: popIn 2s ease forwards;
+  }
+  
+  /* แอนิเมชั่นตัวหนังสือเด้งเข้ามา */
+  @keyframes popIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.5) translateY(50px);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.1) translateY(-10px);
+    }
+    100% {
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  /* เพิ่มเอฟเฟกต์จางหายทั้งหน้า */
+  .fade-out {
+    animation: fadeOut 1s ease forwards;
+  }
+  
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+    }
+  }
+  
+  /* =========================================
+   INTRO PAGE — Neon 3D Welcome Animation
+========================================= */
+.intro-body {
+    background: radial-gradient(circle at 50% 30%, #1a0b23, #0b0b10 70%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* แสงเบื้องหลังแบบ glow */
+  .intro-body::before {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(255,43,133,.35), rgba(163,101,255,.2), transparent 70%);
+    filter: blur(100px);
+    z-index: 0;
+  }
+  
+  /* กล่องกลาง */
+  .welcome-wrapper {
+    z-index: 2;
+    text-align: center;
+  }
+  
+  /* ตัวอักษรแต่ละตัว */
+  .welcome-3d span {
+    display: inline-block;
+    font-family: "Outfit", sans-serif;
+    font-weight: 800;
+    font-size: clamp(60px, 10vw, 120px);
+    color: #fff;
+    letter-spacing: 6px;
+    transform: translateX(-100px) rotateY(40deg);
+    opacity: 0;
+    text-shadow:
+      0 0 10px rgba(255,43,133,0.9),
+      0 0 20px rgba(163,101,255,0.8),
+      0 0 40px rgba(163,101,255,0.6);
+    animation: letterIn 0.7s cubic-bezier(.19,1,.22,1) forwards;
+  }
+  
+  /* เรียงเวลาเข้า */
+  .welcome-3d span:nth-child(1){ animation-delay: 0s; }
+  .welcome-3d span:nth-child(2){ animation-delay: 0.1s; }
+  .welcome-3d span:nth-child(3){ animation-delay: 0.2s; }
+  .welcome-3d span:nth-child(4){ animation-delay: 0.3s; }
+  .welcome-3d span:nth-child(5){ animation-delay: 0.4s; }
+  .welcome-3d span:nth-child(6){ animation-delay: 0.5s; }
+  .welcome-3d span:nth-child(7){ animation-delay: 0.6s; }
+  
+  @keyframes letterIn {
+    0% {
+      transform: translateX(-100px) rotateY(40deg) scale(0.9);
+      opacity: 0;
+    }
+    60% {
+      transform: translateX(10px) rotateY(0deg) scale(1.05);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(0) rotateY(0deg) scale(1);
+    }
+  }
+  
+  /* Glow pulse effect */
+  @keyframes neonPulse {
+    0%,100% {
+      text-shadow:
+        0 0 12px rgba(255,43,133,1),
+        0 0 24px rgba(163,101,255,1),
+        0 0 48px rgba(163,101,255,0.8);
+    }
+    50% {
+      text-shadow:
+        0 0 20px rgba(255,43,133,1),
+        0 0 40px rgba(163,101,255,1),
+        0 0 80px rgba(163,101,255,1);
+    }
+  }
+  
+  .welcome-3d span {
+    animation-name: letterIn, neonPulse;
+    animation-duration: 5s, 5s;
+    animation-timing-function: cubic-bezier(.19,1,.22,1), ease-in-out;
+    animation-iteration-count: 1, infinite;
+    animation-direction: normal, alternate;
+  }
+  
+
+  .fade-out {
+    animation: fadeOut 10s ease forwards;
+  }
+  
+  @keyframes fadeOut {
+    to { opacity: 0; filter: blur(20px); }
+  }
+
+
+
+.wrapper {
+    position: relative;
+}
+
+svg {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+}
+
+.scrollElement {
+    position: absolute;
+    height: 6000px;
+    width: 100%;
+    top: 0;
+    z-index: 4;
+}
+
+.btn {
+    position: fixed;
+    bottom: 5%;
+    right: 0px;
+    transform: translateX(-50%);
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.7em;
+    background-color: transparent;
+    color: #ffffff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    transition: all .3s;
+    z-index: 11;
+}
+
+.btn_works {
+    left: 100px;
+    right: unset;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #ffffff;
+    color: #1B1734;
+}
+
+/* MARK: ---0-490 Mobile */
+@media (max-width: 490px) {
+
+    #text,
+    #arrow {
+        transform-origin: 50% 50%;
+        transform: translateY(-120px) scale(0.8);
+    }
+
+    #info2 {
+        transform-origin: 50% 50%;
+        transform: translateY(-120px) scale(0.8);
+    }
+}
+
